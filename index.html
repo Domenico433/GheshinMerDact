@@ -2,27 +2,25 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Sorpresa!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benvenuto!</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      background-color: #000;
       height: 100%;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: sans-serif;
+      width: 100%;
+      overflow: hidden;
     }
 
-    #rickroll-container {
-      display: none;
+    .video-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 999;
+      z-index: 9999;
     }
 
     iframe {
@@ -30,44 +28,17 @@
       height: 100%;
       border: none;
     }
-
-    button {
-      font-size: 2rem;
-      padding: 1rem 2rem;
-      cursor: pointer;
-      background-color: #ff4081;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #e91e63;
-    }
   </style>
 </head>
 <body>
 
-  <button id="startBtn">Schiacciami</button>
-
-  <div id="rickroll-container">
+  <div class="video-container">
     <iframe
-      src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&loop=1&playlist=dQw4w9WgXcQ"
-      allow="autoplay"
+      src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ"
+      allow="autoplay; fullscreen"
       allowfullscreen>
     </iframe>
   </div>
-
-  <script>
-    const btn = document.getElementById('startBtn');
-    const container = document.getElementById('rickroll-container');
-
-    btn.addEventListener('click', () => {
-      btn.style.display = 'none';
-      container.style.display = 'block';
-    });
-  </script>
 
 </body>
 </html>
