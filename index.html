@@ -2,31 +2,72 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Benvenuto!</title>
+  <title>Sorpresa!</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background: #000;
       height: 100%;
-      overflow: hidden;
+      background: black;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: sans-serif;
+    }
+
+    #rickroll-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
     }
 
     iframe {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       border: none;
+    }
+
+    button {
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      background-color: #ff4081;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e91e63;
     }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ"
-    allow="autoplay"
-    allowfullscreen>
-  </iframe>
+
+  <button id="startBtn">Schiacciami</button>
+
+  <div id="rickroll-container">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&loop=1&playlist=dQw4w9WgXcQ"
+      allow="autoplay"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    const btn = document.getElementById('startBtn');
+    const container = document.getElementById('rickroll-container');
+
+    btn.addEventListener('click', () => {
+      btn.style.display = 'none';
+      container.style.display = 'block';
+    });
+  </script>
+
 </body>
 </html>
