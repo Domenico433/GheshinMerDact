@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Gioca con il memory!" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>GheshinMerDact - Gioco</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-    <title>Gioco - GheshinMerDact</title>
     <style>
-        /* Reset base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #0d0d0d;
@@ -25,7 +23,6 @@
             align-items: center;
             padding: 1rem;
         }
-
         nav {
             background: #1a1a1a;
             padding: 1rem 0;
@@ -35,7 +32,6 @@
             width: 100%;
             max-width: 1200px;
         }
-
         nav a {
             color: white;
             margin: 0 1.25rem;
@@ -44,35 +40,30 @@
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
-
         nav a:hover {
             color: #fbbc05;
         }
-
         main.game-wrapper {
             max-width: 1200px;
             width: 100%;
-    	    text-align: center;
+            text-align: center;
             background: rgba(255 255 255 / 0.05);
             padding: 2rem 1rem;
             border-radius: 1rem;
-    	    box-shadow: 0 0 15px rgb(251 188 5 / 0.3);
-    	    margin-bottom: 10px; /* spazio tra gioco e footer */
+            box-shadow: 0 0 15px rgb(251 188 5 / 0.3);
+            margin-bottom: 10px;
         }
-
         main.game-wrapper h1 {
-            font-size: 3rem;
+            font-size: 2.3rem;
             margin-bottom: 0.5rem;
             color: #fbbc05;
             text-shadow: 1px 1px 3px #000;
         }
-
         main.game-wrapper p.instructions {
             font-size: 1.5rem;
             color: #ddd;
             margin-bottom: 1.5rem;
         }
-
         .game-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -80,7 +71,6 @@
             max-width: 600px;
             margin: 0 auto 1.5rem;
         }
-
         .game-cell {
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
@@ -93,18 +83,16 @@
             user-select: none;
             transition: background-color 0.3s ease;
         }
-
-        .game-cell.flipped, .game-cell.matched {
+        .game-cell.flipped,
+        .game-cell.matched {
             background-color: #fbbc05;
             cursor: default;
         }
-
         .status {
             font-size: 1.3rem;
             color: #fbbc05;
             font-weight: 700;
         }
-
         footer {
             background-color: #111;
             text-align: center;
@@ -116,80 +104,24 @@
             max-width: 1200px;
             margin-top: auto;
         }
-
-        /* Messaggio mobile */
-        .mobile-block {
-            display: flex;
-            text-align: center;
-            font-size: 1.5rem;
-            color: #ff5555;
-            font-weight: bold;
-            max-width: 400px;
-            margin: auto;
-            padding: 2rem;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #0d0d0d;
-            z-index: 9999;
-        }
     </style>
 </head>
 <body>
-
-    <div class="mobile-block" id="mobileBlock">
-        <p>Questo sito non è accessibile da dispositivi mobili.</p>
-    </div>
-
-    <nav id="navMenu">
-        <a href="home">Home</a>
-        <a href="clips">Clips</a>
-        <a href="gioco">Gioco</a>
+    <nav>
+        <a href="index">Home</a>
         <a href="senza-senso">Senza Senso</a>
-        <a href="chat">Chat</a>
-        <a href="film-marvel-in-uscita">Film Marvel</a>
-        <a href="serie-marvel-in-uscita">Serie Marvel</a>
+        <a href="gioco">Gioco</a>
     </nav>
-
-    <main class="game-wrapper" id="gameMain">
+    <main class="game-wrapper">
         <h1>Gioco</h1>
         <p class="instructions">Trova tutte le coppie nel minor tempo possibile!</p>
         <div class="game-grid" id="gameBoard"></div>
         <p class="status" id="gameStatus"></p>
     </main>
-
-    <footer id="gameFooter">
+    <footer>
         <p>&copy; 2025 GheshinMerDact. Tutti i diritti riservati.</p>
     </footer>
-
     <script>
-        function checkScreen() {
-            const mobileBlock = document.getElementById('mobileBlock');
-            const navMenu = document.getElementById('navMenu');
-            const gameMain = document.getElementById('gameMain');
-            const gameFooter = document.getElementById('gameFooter');
-            if(window.innerWidth <= 768) {
-                // Mobile: mostra messaggio e nascondi sito
-                mobileBlock.style.display = 'flex';
-                navMenu.style.display = 'none';
-                gameMain.style.display = 'none';
-                gameFooter.style.display = 'none';
-            } else {
-                // Desktop: nascondi messaggio e mostra sito
-                mobileBlock.style.display = 'none';
-                navMenu.style.display = 'block';
-                gameMain.style.display = 'block';
-                gameFooter.style.display = 'block';
-            }
-        }
-
-        window.addEventListener('resize', checkScreen);
-        window.addEventListener('load', checkScreen);
-
-        // --- gioco ---
-
         const emojis = ['😀','🐱','🌵','🍕','🚀','🎉','⚽','🎵'];
         let gameGrid = [...emojis, ...emojis];
         let flippedCards = [];
@@ -198,8 +130,8 @@
         const statusText = document.getElementById('gameStatus');
 
         function shuffle(array) {
-            for (let i = array.length -1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i+1));
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
@@ -207,7 +139,7 @@
         function createGrid() {
             shuffle(gameGrid);
             gameBoard.innerHTML = '';
-            for(let i=0; i<gameGrid.length; i++){
+            for (let i = 0; i < gameGrid.length; i++) {
                 const cell = document.createElement('div');
                 cell.classList.add('game-cell');
                 cell.dataset.index = i;
@@ -223,8 +155,7 @@
             if (flippedCards.length >= 2 || cell.classList.contains('flipped') || cell.classList.contains('matched')) return;
             flipCard(cell);
             flippedCards.push(cell);
-
-            if(flippedCards.length === 2){
+            if (flippedCards.length === 2) {
                 checkMatch();
             }
         }
@@ -244,12 +175,12 @@
 
         function checkMatch() {
             const [first, second] = flippedCards;
-            if(first.dataset.emoji === second.dataset.emoji){
+            if (first.dataset.emoji === second.dataset.emoji) {
                 first.classList.add('matched');
                 second.classList.add('matched');
                 matchedPairs++;
                 flippedCards = [];
-                if(matchedPairs === emojis.length){
+                if (matchedPairs === emojis.length) {
                     statusText.textContent = 'Complimenti, hai trovato tutte le coppie!';
                 } else {
                     statusText.textContent = `Coppie trovate: ${matchedPairs}`;
@@ -265,6 +196,5 @@
 
         createGrid();
     </script>
-
 </body>
 </html>
