@@ -98,7 +98,7 @@
             display: flex;
             justify-content: space-around;
             gap: 2rem;
-            flex-wrap: nowrap;
+            flex-wrap: wrap; /* Cambiato in wrap per adattare meglio su mobile */
             margin-bottom: 3rem;
         }
 
@@ -138,34 +138,9 @@
             width: 100%;
             max-width: 1200px;
         }
-
-        /* Responsive - nasconde sito su mobile */
-        .mobile-block {
-            display: none;
-            text-align: center;
-            font-size: 1.4rem;
-            color: #ff5555;
-            font-weight: bold;
-            max-width: 400px;
-            margin: auto;
-            padding: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            body > *:not(.mobile-block) {
-                display: none !important;
-            }
-            .mobile-block {
-                display: block !important;
-            }
-        }
     </style>
 </head>
 <body>
-
-    <div class="mobile-block">
-        <p>Questo sito non è accessibile da dispositivi mobili.</p>
-    </div>
 
     <nav>
         <a href="index">Home</a>
